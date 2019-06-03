@@ -1,23 +1,22 @@
 package me.mobieljoy;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
 public class Dienblad {
-    private ArrayList<Artikel> artikelen;
+    private Stack<Artikel> artikelen;
     private Persoon klant;
 
     /**
      * Constructor
      */
     public Dienblad() {
-        this.artikelen = new ArrayList<Artikel>();
+        this.artikelen = new Stack<Artikel>();
         this.klant = null;
     }
     
     public Dienblad(Persoon p) {
-    	this.artikelen = new ArrayList<Artikel>();
+    	this.artikelen = new Stack<Artikel>();
     	this.klant = p;
     }
 
@@ -30,27 +29,8 @@ public class Dienblad {
         this.artikelen.add(artikel);
     }
 
-    /**
-     * Methode om aantal artikelen op dienblad te tellen
-     *
-     * @return Het aantal artikelen
-     */
-    public int getAantalArtikelen() {
-        return this.artikelen.size();
-    }
-
-    /**
-     * Methode om de totaalprijs van de artikelen
-     * op dienblad uit te rekenen
-     *
-     * @return De totaalprijs
-     */
-    public double getTotaalPrijs() {
-        double totaal = 0.0;
-        for(Artikel a : this.artikelen) {
-        	totaal+=a.getPrijs();
-        }
-        return totaal;
+    public Iterator<Artikel> getArtikelen(){
+    	return this.artikelen.iterator();
     }
 
 	public Persoon getKlant() {

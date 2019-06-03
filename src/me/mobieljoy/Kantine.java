@@ -4,13 +4,14 @@ public class Kantine {
 
     private Kassa kassa;
     private KassaRij kassarij;
+    private KantineAanbod kantineAanbod;
 
     /**
      * Constructor
      */
     public Kantine() {
-        kassarij = new KassaRij();
-        kassa = new Kassa(kassarij);
+        this.kassarij = new KassaRij();
+        this.kassa = new Kassa(kassarij);
     }
 
     /**
@@ -19,42 +20,36 @@ public class Kantine {
      * en plaats deze op het dienblad. Tenslotte sluit de
      * Persoon zich aan bij de rij voor de kassa.
      */
-    public void loopPakSluitAan() {
-        // method body omitted
+    public void loopPakSluitAan(Persoon persoon, String[] artikelnamen) {
+        Dienblad d = new Dienblad();
+        d.setKlant(persoon);
+        for(String s : artikelnamen) {
+        	d.voegToe(this.kantineAanbod.getArtikel(s));
+        }
+        this.kassarij.sluitAchteraan(d);
     }
 
     /**
      * Deze methode handelt de rij voor de kassa af.
      */
     public void verwerkRijVoorKassa() {
-        while() {
-            // omitted
+    	while(kassarij.erIsEenRij()) {
+            Dienblad d = kassarij.eerstePersoonInRij();
+            this.kassa.rekenAf(d);
         }
     }
 
-    /**
-     * Deze methode telt het geld uit de kassa
-     *
-     * @return hoeveelheid geld in kassa
-     */
-    public double hoeveelheidGeldInKassa() {
-       // method body omitted
-    }
+    //Getters
+	public Kassa getKassa() {
+		return kassa;
+	}
 
-    /**
-     * Deze methode geeft het aantal gepasseerde artikelen.
-     *
-     * @return het aantal gepasseerde artikelen
-     */
-    public int aantalArtikelen() {
-        // method body omitted
-    }
+	public KantineAanbod getKantineAanbod() {
+		return kantineAanbod;
+	}
 
-    /**
-     * Deze methode reset de bijgehouden telling van
-     * het aantal artikelen en "leegt" de inhoud van de kassa.
-     */
-    public void resetKassa() {
-        // method body omitted
-    }
+	public void setKantineAanbod(KantineAanbod kantineAanbod) {
+		this.kantineAanbod = kantineAanbod;
+	}
+    
 }

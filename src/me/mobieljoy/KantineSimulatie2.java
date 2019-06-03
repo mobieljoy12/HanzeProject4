@@ -1,5 +1,6 @@
 package me.mobieljoy;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 public class KantineSimulatie2 {
@@ -39,7 +40,7 @@ public class KantineSimulatie2 {
      * Constructor
      *
      */
-    public KantineSimulatie() {
+    public KantineSimulatie2() {
         kantine = new Kantine();
         random = new Random();
         int[] hoeveelheden = getRandomArray(
@@ -81,7 +82,7 @@ public class KantineSimulatie2 {
     private int getRandomValue(int min, int max) {
         return random.nextInt(max - min + 1) + min;
     }
-
+    
     /**
      * Methode om op basis van een array van indexen voor de array
      * artikelnamen de bijhorende array van artikelnamen te maken
@@ -99,7 +100,7 @@ public class KantineSimulatie2 {
 
         return artikelen;
     }
-
+    
     /**
      * Deze methode simuleert een aantal dagen
      * in het verloop van de kantine
@@ -111,18 +112,21 @@ public class KantineSimulatie2 {
         for(int i = 0; i < dagen; i++) {
 
             // bedenk hoeveel personen vandaag binnen lopen
-            int aantalpersonen = ... ;
+            int aantalpersonen = this.getRandomValue(MIN_PERSONEN_PER_DAG, MAX_PERSONEN_PER_DAG);
 
             // laat de personen maar komen...
             for(int j = 0; j < aantalpersonen; j++) {
 
                 // maak persoon en dienblad aan, koppel ze
                 // en bedenk hoeveel artikelen worden gepakt
-                int aantalartikelen = ... ;
+            	Persoon p = new Persoon(128376817, "Jasper", "van der Kooi", new Datum(22,04,2000), 'M');
+                Dienblad k = new Dienblad();
+                k.setKlant(p);
+            	int aantalartikelen = this.getRandomValue(MIN_ARTIKELEN_PER_PERSOON, MAX_ARTIKELEN_PER_PERSOON);
 
                 // genereer de "artikelnummers", dit zijn indexen
                 // van de artikelnamen
-                array int[] tepakken = getRandomArray(
+                int[] tepakken = getRandomArray(
                     aantalartikelen, 0, AANTAL_ARTIKELEN-1);
 
                 // vind de artikelnamen op basis van
@@ -131,17 +135,18 @@ public class KantineSimulatie2 {
 
                 // loop de kantine binnen, pak de gewenste
                 // artikelen, sluit aan
-
+                this.kantine.loopPakSluitAan(p, artikelen);
             }
 
             // verwerk rij voor de kassa
-
+            this.kantine.verwerkRijVoorKassa();
             // druk de dagtotalen af en hoeveel personen binnen
-
             // zijn gekomen
-
+            Kassa k = this.kantine.getKassa();
+            BigDecimal hoeveelheidinkassa = new BigDecimal(k.hoeveelheidGeldInKassa()).setScale(2, BigDecimal.ROUND_HALF_UP);
+            System.out.println("Dag " + i + ": " + k.aantalArtikelen() + " artikelen, " + hoeveelheidinkassa + " in de kassa");
             // reset de kassa voor de volgende dag
-
+            k.resetKassa();
         }
     }
 }

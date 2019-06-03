@@ -8,13 +8,9 @@ public class Testor {
 	
 	public static void main(String[] args) {
 		
-		Datum valid = new Datum(22,4,2000);
-		Datum valid2 = new Datum(29,2,2000);
-		Datum invalid = new Datum(29,2,2001);
+		KantineSimulatie2 ks = new KantineSimulatie2();
+		ks.simuleer(10);
 		
-        Testor.print(valid.getDatumAsString());
-        Testor.print(valid2.getDatumAsString());
-        Testor.print(invalid.getDatumAsString());
     }
 	
 }

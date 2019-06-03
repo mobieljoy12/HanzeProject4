@@ -1,17 +1,16 @@
 package me.mobieljoy;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class KassaRij {
 
-	private ArrayList<Dienblad> rij;
+	private LinkedList<Dienblad> rij;
 	
     /**
      * Constructor
      */
     public KassaRij() {
-        this.rij = new ArrayList<Dienblad>();
+        this.rij = new LinkedList<Dienblad>();
     }
 
     /**

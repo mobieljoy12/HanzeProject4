@@ -11,8 +11,8 @@ public class Artikel {
 	}
 	
 	public Artikel() {
-		this.naam = null;
-		this.prijs = null;
+		this.naam = "";
+		this.prijs = 0;
 	}
 	
 	public String getNaam() {

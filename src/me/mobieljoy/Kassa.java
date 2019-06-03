@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 public class Kassa {
 
-	private KassaRij kassarij;
 	private int totaalproducten;
 	private double totaalverkochtprijs;
 	
@@ -12,7 +11,6 @@ public class Kassa {
      * Constructor
      */
     public Kassa(KassaRij kassarij) {
-        this.kassarij = kassarij;
         this.totaalproducten = 0;
         this.totaalverkochtprijs = 0.0;
     }
@@ -26,10 +24,12 @@ public class Kassa {
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad klant) {
-    	Double totaalprijs = klant.getTotaalPrijs();
-        int aantal = klant.getAantalArtikelen();
-        this.totaalproducten+=aantal;
-        this.totaalverkochtprijs+=totaalprijs;
+        Iterator<Artikel> artikelen = klant.getArtikelen();
+        while(artikelen.hasNext()) {
+        	Artikel a = artikelen.next();
+        	this.totaalproducten++;
+        	this.totaalverkochtprijs += a.getPrijs();
+        }
     }
 
     /**
@@ -39,7 +39,7 @@ public class Kassa {
      * @return aantal artikelen
      */
     public int aantalArtikelen() {
-        return this.aantalArtikelen();
+        return this.totaalproducten;
     }
 
     /**

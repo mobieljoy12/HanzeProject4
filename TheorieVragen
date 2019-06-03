@@ -3,3 +3,17 @@
 Week 1:
   1:
     B: Declareren is de variabelen neerzetten met een accessor en een datatype, Initialiseren is de variabelen een eerste waarde geven
+Week 2:
+  1:
+    A: Een while loop is hier handiger omdat er steeds een methode aangeroepen kan worden die checkt of de loop nog een keer moet lopen
+  4:
+    A: De dubbele methodes zijn: hoeveelheidGeldInKassa(), aantalArtikelen() en resetKassa()
+  5:
+    A: Deze methodes worden alleen in de klasse zelf gebruikt dus zou het alleen maar voor verwarring zorgen
+  6:
+    A: Er wordt eerst een nieuwe instantie van de klasse Kantine gemaakt
+       Dan wordt er een Random aangemaakt die gebruikt wordt om een random array te verkrijgen
+       Zo worden er willekeurige aantallen producten in de nieuwe instantie van KantineAanbod gestopt
+       Als laatste wordt het aanbod geset in de kantine instantie
+    B: Volgens de Java API wordt er bij de nextInt() methode, de waarde die meegegeven wordt niet meegerekend. Vandaar dat er +1 in voorkomt
+       Dit zorgt er voor dat de max wel meegerekend kan worden bij het zoeken van een random value
