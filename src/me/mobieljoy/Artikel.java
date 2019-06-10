@@ -12,7 +12,7 @@ public class Artikel {
 	
 	public Artikel() {
 		this.naam = "";
-		this.prijs = 0;
+		this.prijs = 0.0;
 	}
 	
 	public String getNaam() {

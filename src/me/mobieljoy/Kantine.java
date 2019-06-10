@@ -20,13 +20,11 @@ public class Kantine {
      * en plaats deze op het dienblad. Tenslotte sluit de
      * Persoon zich aan bij de rij voor de kassa.
      */
-    public void loopPakSluitAan(Persoon persoon, String[] artikelnamen) {
-        Dienblad d = new Dienblad();
-        d.setKlant(persoon);
+    public void loopPakSluitAan(Dienblad dienblad, String[] artikelnamen) {
         for(String s : artikelnamen) {
-        	d.voegToe(this.kantineAanbod.getArtikel(s));
+        	dienblad.voegToe(this.kantineAanbod.getArtikel(s));
         }
-        this.kassarij.sluitAchteraan(d);
+        this.kassarij.sluitAchteraan(dienblad);
     }
 
     /**
@@ -34,8 +32,8 @@ public class Kantine {
      */
     public void verwerkRijVoorKassa() {
     	while(kassarij.erIsEenRij()) {
-            Dienblad d = kassarij.eerstePersoonInRij();
-            this.kassa.rekenAf(d);
+            Dienblad dienblad = kassarij.eerstePersoonInRij();
+            this.kassa.rekenAf(dienblad);
         }
     }
 

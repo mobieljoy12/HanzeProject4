@@ -23,7 +23,7 @@ public class Persoon {
 	}
 	
 	public Persoon() {
-		this.BSN = 0;
+		this.BSN = (int) 0;
 		this.voornaam = "";
 		this.achternaam = "";
 		this.geboortedatum = new Datum();
@@ -78,7 +78,10 @@ public class Persoon {
 			this.geslacht = "X".charAt(0);
 		}
 	}
-	public String toString() {
-		return this.BSN + " " + this.voornaam + " " + this.achternaam + ", " + this.geslacht + ", " + this.geboortedatum.getDatumAsString() + "";
+	public void drukAf(){
+		System.out.println(this.voornaam + " " + this.achternaam);
+		System.out.println("Geslacht: " + this.getGeslacht());
+		System.out.println("Geboortedatum: "+ this.getGeboortedatum());
+		System.out.println("BSN: "+ this.BSN); 
 	}
 }

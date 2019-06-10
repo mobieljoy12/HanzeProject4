@@ -17,3 +17,16 @@ Week 2:
        Als laatste wordt het aanbod geset in de kantine instantie
     B: Volgens de Java API wordt er bij de nextInt() methode, de waarde die meegegeven wordt niet meegerekend. Vandaar dat er +1 in voorkomt
        Dit zorgt er voor dat de max wel meegerekend kan worden bij het zoeken van een random value
+Week 3:
+  2:
+    C: Als er geen constructor gedefineerd is wordt er uitgegaan van een argumentloze constructor
+    D: De functies gebruiken geen parameters vanuit de klasse, alleen de parameters van de functies zijn genoeg.
+    E: Door het aanmaken van een private constructor wordt de default public constructor overwritten. Hierdoor is er geen public constructor meer
+       waardoor er dus geen nieuwe instantie aangemaakt kan worden.
+    G: Final zorgt ervoor dat een variabele niet meer veranderd kan worden
+    H: De variabele wordt pas geintroduceert wanneer er een instantie van de klasse aangemaakt wordt. Omdat de functie static is,
+       is dit niet gebeurt wanneer de functie aangeroepen wordt
+    I: Doordat de final wordt vervangen is het nu mogelijk om de variabele aan te passen tijdens runtime, wat niet de bedoeling is.
+       De variabele in geintroduceert zodat het hele systeem makkelijk aan te passen is tussen runtimes in.
+  3:
+    B: De super moet altijd eerst aangeroepen worden als dit gewenst is, daarna kunnen andere aanpassingen worden gedaan.

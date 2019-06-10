@@ -31,14 +31,12 @@ public class KassaRij {
      */
     public Dienblad eerstePersoonInRij() {
     	if(this.erIsEenRij()) {
-        	for(Dienblad d : this.rij) {
-        		this.rij.remove(d);
-        		return d;
-        	}
+        	Dienblad dienblad = this.rij.getFirst();
+        	this.rij.removeFirst();
+        	return dienblad;
         }else {
         	return null;
         }
-		return null;
     }
 
     /**
