@@ -118,16 +118,16 @@ public class KantineSimulatie2 {
         	for(int j=0;j<89;j++) {
 				Persoon persoon = new Student(12365478, "Jasper", "van der Kooi", new Datum(22,04,2000), 'M',123456,"HBO-ICT");
 				personen.add(persoon);
-				System.out.println(persoon.toString());
+				System.out.println("Een Student");
 			}
 			for(int j=0;j<10;j++) {
 				Persoon persoon = new Docent(12365478, "Rick", "Schoustra", new Datum(12,2,2000), 'M',"ABCD","SCMI");
 				personen.add(persoon);
-				System.out.println(persoon.toString());
+				System.out.println("Een docent");
 			}
 			Persoon persoon = new KantineMedewerker(12365478, "Jan", "Janus", new Datum(11,12,1990), 'M',987654,true);
 			personen.add(persoon);
-			System.out.println(persoon.toString());
+			System.out.println("Een KantineMedewerker");
             // laat de personen maar komen...
             for(int j = 0; j < 100; j++) {
 
@@ -194,9 +194,9 @@ public class KantineSimulatie2 {
     		}
     		kantine.verwerkRijVoorKassa();
     		Kassa kassa = kantine.getKassa();
-            BigDecimal hoeveelheidinkassa = new BigDecimal(k.hoeveelheidGeldInKassa()).setScale(2, BigDecimal.ROUND_HALF_UP);
+            BigDecimal hoeveelheidinkassa = new BigDecimal(kassa.hoeveelheidGeldInKassa()).setScale(2, BigDecimal.ROUND_HALF_UP);
             int dagdisplay = i + 1;
-    		System.out.println("Dag " + dagdisplay + ": " + k.aantalArtikelen() + " artikelen, " + hoeveelheidinkassa + " in de kassa");
+    		System.out.println("Dag " + dagdisplay + ": " + kassa.aantalArtikelen() + " artikelen, " + hoeveelheidinkassa + " in de kassa");
             omzet[i] = kassa.hoeveelheidGeldInKassa();
             aantal[i] = kassa.aantalArtikelen();
     		kassa.resetKassa();

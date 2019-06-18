@@ -30,3 +30,24 @@ Week 3:
        De variabele in geintroduceert zodat het hele systeem makkelijk aan te passen is tussen runtimes in.
   3:
     B: De super moet altijd eerst aangeroepen worden als dit gewenst is, daarna kunnen andere aanpassingen worden gedaan.
+Week 4:
+  1:
+    B: TODO
+    C: We willen niet dat het saldo aangepast kan worden zonder dat onze methodes aangeroepen worden.
+  3:
+    A: Nee dit is niet logisch want er staat geen daadwerkelijke code in een interface.
+    B: Nee, je moet een abstracte klasse eerst verder uitbouwen door deze te implementeren.
+    C: Nee dat kan niet
+    D: Ja dat kan
+    E: Ja dat kan
+    F: Ja, alle methodes zijn abstract omdat er geen code aan toegevoegd kan worden.
+    G: Ja, als er 1 methode abstract is moet de hele klasse abstract zijn. Dit omdat volledige methodes niet geimplementeerd maar alleen overerfd kunnen worden
+    H: Door abstracte klassen hebben verschillende klassen die deze implementeren dezelfde namen voor een aantal methodes. Dit is een goed voorbeeld van Polyvormisme
+       Ook interfaces doen dit, ze maken een soort template waar alle klassen die dit implementeren aan moeten voldoen, inclusief namen.
+  4:
+    A: Ja dat kan, als je niet wil dat de klasse geinitieerd wordt kan je hiervoor kiezen. Een goed voorbeeld hiervan is de klasse HttpServlet
+    B: Ja, een subklasse van een abstracte klasse moet altijd alle methodes implementeren. Dit zorgt ervoor dat de klassen die dit implementeren een soort template krijgen
+       die ze dienen te gebruiken.
+    C: Je kan een goede IDE gebruiken, deze zal je vertellen wanneer je methodes mist. Dit is logisch omdat een goede IDE sowiso al handig is
+    D: Een abstracte variabele kan je niet initialiseren
+    E: Een final methode kan niet herschreven worden door middel van een @Override, een abstracte methode moet overschreven worden met een @Override
