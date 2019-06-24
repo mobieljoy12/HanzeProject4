@@ -1,17 +1,21 @@
 package me.mobieljoy;
 
+import javax.persistence.EntityManager;
+
 public class Kantine {
 
     private Kassa kassa;
     private KassaRij kassarij;
     private KantineAanbod kantineAanbod;
+    private EntityManager manager;
 
     /**
      * Constructor
      */
-    public Kantine() {
+    public Kantine(EntityManager manager) {
         this.kassarij = new KassaRij();
-        this.kassa = new Kassa(kassarij);
+        this.kassa = new Kassa(kassarij, manager);
+        this.manager = manager;
     }
 
     /**

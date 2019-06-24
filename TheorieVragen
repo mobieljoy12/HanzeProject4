@@ -51,3 +51,25 @@ Week 4:
     C: Je kan een goede IDE gebruiken, deze zal je vertellen wanneer je methodes mist. Dit is logisch omdat een goede IDE sowiso al handig is
     D: Een abstracte variabele kan je niet initialiseren
     E: Een final methode kan niet herschreven worden door middel van een @Override, een abstracte methode moet overschreven worden met een @Override
+Week 5:
+  1:
+	D: @ id , wordt gebruikt om aan te geven wat de primary key wordt
+	@generatevalue defineert hoe waarde moet worden gegenereerd voor de gegeven kolom.
+	@column geeft specifieke kenmerken van de fysieke databasekolom aan.
+	E: telefoon, studie, student_telefoon, student
+  2:
+	A:een student kan meerdere telefoons hebben , daarom niet @OneToOne want dan zou een student maar een telefoon kunnen hebben.
+
+	B: Je ziet in de klasse StudiInschrijving bi het veld Student student @manyToOne Staan en een @JoinColomn die zorgt voor de koppeling met de Klasse Student
+	Betere performance, @JoinColumn geeft een entiteit een foreign key aan een andere entiteit, terwijl @JoinTable de relatie tussen alle relaties tussen entiteit A en entiteit B weergeeft.
+
+	C:Dit wordt zichtbar door dat een student tenminste bij 1 studie ingeschreven kan staan , maar ook bij meerdere studies. In eer diagram is dit zichtbaar door: 0…* to 0….1.
+
+	D:in de tabel student is een kolom kaartNummer. Het nut ervan is het hergebruik van gemeenschappelijke toewijzingen tussen entiteiten mogelijk te maken.
+	Ook is het gebruik ervan handig  om klassen inclusief entiteitsklassen te splitsen in kleinere eenheden, dit kan met @embedded en @embedable zonder de databasetabel te splitten.
+  3:
+	A:Bij het aanpassen van producten bijvoorbeeld, of het aanpassen van de Personen
+Week 6:
+  4:
+    E: Er zouden meerdere regels per factuur kunnen komen en dit is niet mogelijk als je het verwerkt in de factuurklasse.
+ 

@@ -1,5 +1,8 @@
 package me.mobieljoy;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Artikel {
 
 	private String naam;

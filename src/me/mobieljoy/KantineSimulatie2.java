@@ -2,9 +2,16 @@ package me.mobieljoy;
 
 import java.math.BigDecimal;
 import java.util.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.*;
 
 public class KantineSimulatie2 {
-
+	
+	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY =
+			Persistence.createEntityManagerFactory("KantineSimulatie");
+	private EntityManager manager;
+	
     // kantine
     private Kantine kantine;
 
@@ -35,12 +42,17 @@ public class KantineSimulatie2 {
     // minimum en maximum artikelen per persoon
     private static final int MIN_ARTIKELEN_PER_PERSOON = 1;
     private static final int MAX_ARTIKELEN_PER_PERSOON = 4;
+    
+    
 
     /**
      * Constructor
      *
      */
     public KantineSimulatie2() {
+    	
+    	this.manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+    	
         kantine = new Kantine();
         random = new Random();
         int[] hoeveelheden = getRandomArray(
@@ -165,6 +177,23 @@ public class KantineSimulatie2 {
             // reset de kassa voor de volgende dag
             k.resetKassa();
         }
+        //Queries
+        Query query;
+        
+        query = manager.createNamedQuery("Factuur.totaal");
+        System.out.println("Factuur totaal: " + query.getSingleResult().toString());
+        
+        query = manager.createNamedQuery("Factuur.gemiddelde");
+        System.out.println("Gemiddelden: " + query.getSingleResult().toString());
+        
+        query = manager.createNamedQuery("Factuur.top").setMaxResults(3);
+        System.out.println("Top 3:");
+        query.getResultList().forEach(result -> System.out.println(Arrays.toString(result)));
+        
+        manager.close();
+        ENTITY_MANAGER_FACTORY.close();
+        
+        
         System.out.println("Gemiddelde omzet: " + Administratie.berekenGemiddeldeOmzet(omzet));
         System.out.println("Gemiddeld aantal producten: " + Administratie.berekenGemiddeldAantal(aantal));
     }

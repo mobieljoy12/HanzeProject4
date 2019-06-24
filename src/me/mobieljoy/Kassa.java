@@ -1,18 +1,23 @@
 package me.mobieljoy;
 
+import java.time.LocalDate;
 import java.util.Iterator;
+
+import javax.persistence.EntityManager;
 
 public class Kassa {
 
 	private int totaalproducten;
 	private double totaalverkochtprijs;
+	private EntityManager manager;
 	
     /**
      * Constructor
      */
-    public Kassa(KassaRij kassarij) {
+    public Kassa(KassaRij kassarij, EntityManager manager) {
         this.totaalproducten = 0;
         this.totaalverkochtprijs = 0.0;
+        this.manager = manager;
     }
 
     /**
@@ -24,50 +29,17 @@ public class Kassa {
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad klant) {
-        Iterator<Artikel> artikelen = klant.getArtikelen();
-        Persoon persoon = klant.getKlant();
-        int numproducten = 0;
-        double afrekenprijs = 0.0;
-        while(artikelen.hasNext()) {
-        	Artikel a = artikelen.next();
-        	numproducten++;
-        	afrekenprijs += a.getPrijs();
-        }
-        	
-        	double kortingPerc = 0.0;
-        	boolean heeftMax = false;
-        	double maxKorting = 0;
         
-        	if(persoon instanceof Docent) {
-        		kortingPerc = ((Docent) persoon).geefKortingsPercentage();
-        		heeftMax = ((Docent) persoon).heeftMaximum();
-        		maxKorting = ((Docent) persoon).geefMaximum();
-        	}else if(persoon instanceof KantineMedewerker) {
-        		kortingPerc = ((KantineMedewerker) persoon).geefKortingsPercentage();
-        		heeftMax = ((KantineMedewerker) persoon).heeftMaximum();
-        		maxKorting = ((KantineMedewerker) persoon).geefMaximum();
-        	}
-        	
-        	double korting = afrekenprijs - (afrekenprijs * kortingPerc);
-        	
-        	if(heeftMax) {
-        		if(korting > maxKorting) {
-        			afrekenprijs -= maxKorting;
-        		}else {
-        			afrekenprijs -= korting;
-        		}
-        	}else {
-        		afrekenprijs -= korting;
-        	}
-        	try {
-        		persoon.getBetaalwijze().betaal(afrekenprijs);
-        	}catch(TeWeinigGeldException e){
-        		System.out.println(persoon.getVoornaam() + " " + persoon.getAchternaam() + " kon niet betalen. Reden: " + e.getMessage());
-        		return;
-        	}
-        	
-        	this.totaalproducten += numproducten;
-            this.totaalverkochtprijs += afrekenprijs;
+    		LocalDate today = LocalDate.now();
+    	
+    		try {
+    			Factuur factuur = new Factuur(klant, today);
+    			this.totaalproducten += factuur.getNumProducts();
+                this.totaalverkochtprijs += factuur.getTotaalPrijs();
+    		}catch(TeWeinigGeldException e) {
+    			System.out.println("Kon Factuur niet opslaan: " + e.getMessage());
+    		}
+    		
     }
 
     /**
